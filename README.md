@@ -3,4 +3,4 @@
 ### Dataset
 | Dataset | Description |
 | ----- |  ---- |
-| thaigov-v2-corpus  | Download the dataset [here](https://drive.google.com/file/d/1MXZW15yf5ly5PhQXoDa8pYWffGcDFLTl/view?usp=sharing), unzip and move it to `data`.|
+| thaigov-v2-corpus  | Download the dataset [here](https://drive.google.com/file/d/1HElswdqj0rd2PyglD1JSj-T9pk67cGrA/view?usp=sharing), unzip and move it to `data`.|
