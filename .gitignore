@@ -1,5 +1,6 @@
 data/
 css_env/
+text_jsonl/
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
