@@ -1,6 +1,7 @@
 import os
 import glob
 import json
+from typing import List
 from LM.preprocess import process_transformers
 
 
@@ -28,7 +29,7 @@ def get_lines_from_txt(year: int, month: int, day: int):
                 outfile.write(jout)
 
 
-def get_content(lines):
+def get_content(lines: List):
     """
     Get the content from the lines.
     P.S. This is not complete. Need to handle the irrelevant lines.
