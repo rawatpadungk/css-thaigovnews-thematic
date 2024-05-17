@@ -21,7 +21,6 @@ def get_lines_from_txt(year: int, month: int, day: int):
                 lines = f.readlines()
                 lines = list(map(lambda s: s.replace('\xa0', ' '), lines))
                 content_lines = get_content(lines[1:-1], year, month, day)
-                print(content_lines)
                 ret = {
                     'date': f'{year}-{month}-{day}',
                     'topic': process_transformers(lines[0]),
