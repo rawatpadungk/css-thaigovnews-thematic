@@ -50,7 +50,7 @@ def get_content(lines: List):
 
 def get_txt_all_dates():
     """
-    Get all the dates that we have data for.
+    Get the lines from the txt files for all dates.
     """
     for year in os.listdir('data'):
         for month in os.listdir(os.path.join('data', year)):
