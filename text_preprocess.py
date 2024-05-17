@@ -20,7 +20,7 @@ def get_lines_from_txt(year: int, month: int, day: int):
             with open(file, 'r') as f:
                 lines = f.readlines()
                 lines = list(map(lambda s: s.replace('\xa0', ' '), lines))
-                content_lines = get_content(lines[1:-1], year, month, day)
+                content_lines = get_content(lines[1:-1])
                 ret = {
                     'date': f'{year}-{month}-{day}',
                     'topic': process_transformers(lines[0]),
@@ -30,7 +30,7 @@ def get_lines_from_txt(year: int, month: int, day: int):
                 outfile.write(jout)
 
 
-def get_content(lines: List, year: int, month: int, day: int):
+def get_content(lines: List):
     """
     Get the content from the lines.
     P.S. http addresses are still not removed.
@@ -40,7 +40,6 @@ def get_content(lines: List, year: int, month: int, day: int):
         # rule-based filtering
         if line == '\n': continue
         elif line == 'พิมพ์' + '\n': continue
-        elif line == str(day).zfill(2) + '/' + str(month).zfill(2) + '/' + str(year + 543) + '\n': continue
         elif re.match(r'\d{2}/\d{2}/\d{4}', line[:-1]): continue
         elif re.match(r'วัน[ก-๙]{3,8}ที่ \d{1,2} [ก-๙]{6,10} \d{4}', line[:-1]): continue
         elif len(''.join(set(line[:-1]))) == 1: continue
