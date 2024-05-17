@@ -33,7 +33,7 @@ def get_lines_from_txt(year: int, month: int, day: int):
 def get_content(lines: List, year: int, month: int, day: int):
     """
     Get the content from the lines.
-    P.S. This is not complete. Need to handle the irrelevant lines.
+    P.S. http addresses are still not removed.
     """
     content = []
     for line in lines:
