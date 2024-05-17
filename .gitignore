@@ -3,6 +3,7 @@ css_env/
 text_jsonl/
 sentiment_jsonl/
 test.py
+LM/__pycache__/
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
