@@ -43,6 +43,7 @@ def get_content(lines: List, year: int, month: int, day: int):
         elif line == str(day).zfill(2) + '/' + str(month).zfill(2) + '/' + str(year + 543) + '\n': continue
         elif re.match(r'\d{2}/\d{2}/\d{4}', line[:-1]): continue
         elif re.match(r'วัน[ก-๙]{3,8}ที่ \d{1,2} [ก-๙]{6,10} \d{4}', line[:-1]): continue
+        elif len(''.join(set(line[:-1]))) == 1: continue
         else:
             content.append(line)
     return list(dict.fromkeys(content))
@@ -56,6 +57,6 @@ def get_txt_all_dates():
         for month in os.listdir(os.path.join('data', year)):
             for day in os.listdir(os.path.join('data', year, month)):
                 get_lines_from_txt(int(year), int(month), int(day))
-    # get_lines_from_txt(2024, 3, 3)
+    # get_lines_from_txt(2023, 4, 4)
 
 get_txt_all_dates()
