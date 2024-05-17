@@ -1,6 +1,7 @@
 data/
 css_env/
 text_jsonl/
+sentiment_jsonl/
 test.py
 
 # # Byte-compiled / optimized / DLL files
