@@ -3,6 +3,7 @@ import glob
 import json
 from typing import List
 from LM.preprocess import process_transformers
+import re
 
 
 def get_lines_from_txt(year: int, month: int, day: int):
@@ -19,26 +20,33 @@ def get_lines_from_txt(year: int, month: int, day: int):
             with open(file, 'r') as f:
                 lines = f.readlines()
                 lines = list(map(lambda s: s.replace('\xa0', ' '), lines))
-                lines = [process_transformers(line) for line in lines]
+                content_lines = get_content(lines[1:-1], year, month, day)
+                print(content_lines)
                 ret = {
                     'date': f'{year}-{month}-{day}',
-                    'topic': lines[0],
-                    'content': get_content(lines),
+                    'topic': process_transformers(lines[0]),
+                    'content': [process_transformers(content_line) for content_line in content_lines],
                 }
                 jout = json.dumps(ret, ensure_ascii=False) + '\n'
                 outfile.write(jout)
 
 
-def get_content(lines: List):
+def get_content(lines: List, year: int, month: int, day: int):
     """
     Get the content from the lines.
     P.S. This is not complete. Need to handle the irrelevant lines.
     """
     content = []
-    for line in lines[1:-1]:
-        if line == '': continue
-        content.append(line)
-    return content
+    for line in lines:
+        # rule-based filtering
+        if line == '\n': continue
+        elif line == 'พิมพ์' + '\n': continue
+        elif line == str(day).zfill(2) + '/' + str(month).zfill(2) + '/' + str(year + 543) + '\n': continue
+        elif re.match(r'\d{2}/\d{2}/\d{4}', line[:-1]): continue
+        elif re.match(r'วัน[ก-๙]{3,8}ที่ \d{1,2} [ก-๙]{6,10} \d{4}', line[:-1]): continue
+        else:
+            content.append(line)
+    return list(dict.fromkeys(content))
 
 
 def get_txt_all_dates():
@@ -49,6 +57,6 @@ def get_txt_all_dates():
         for month in os.listdir(os.path.join('data', year)):
             for day in os.listdir(os.path.join('data', year, month)):
                 get_lines_from_txt(int(year), int(month), int(day))
-#     get_lines_from_txt(2023, 1, 1)
+    # get_lines_from_txt(2024, 3, 3)
 
-# get_txt_all_dates()
+get_txt_all_dates()
