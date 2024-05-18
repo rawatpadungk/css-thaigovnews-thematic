@@ -5,6 +5,8 @@ sentiment_jsonl/
 test.py
 LM/__pycache__/
 
+playground.py
+
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
 # *.py[cod]
