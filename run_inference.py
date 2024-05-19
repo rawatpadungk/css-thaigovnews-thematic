@@ -2,10 +2,23 @@ import os
 import json
 from typing import List
 
-# from LM.sentiment_build import tokenizer, model
+from LM.sentiment_build import tokenizer, model
 from LM.sentiment_pipeline import pipe as sentiment_model
 
-tokenizer_kwargs = {"padding": True, "truncation": True, "max_length": 512}
+# tokenizer_kwargs = {"padding": True, "truncation": True, "max_length": 512}
+
+
+def split_tokens(content: List[str], tokenizer=tokenizer, max_length: int = 512):
+    """
+    Split the content's tokens from the tokenizer to the max length.
+    """
+    ret = []
+    token_list = tokenizer("".join(content))["input_ids"]
+    len_token_list = len(token_list)
+    stride = max_length - 5
+    for i in range(0, len_token_list, stride):
+        ret.append(tokenizer.decode(token_list[i : i + stride]))
+    return ret
 
 
 def get_split_max_length(c: str, ret: List = []):
@@ -37,13 +50,8 @@ def get_sentiment(year: int, month: int, day: int):
             for line in infile:
                 data = json.loads(line)
                 content = data["content"]
-                new_content = []
-                for c in content:
-                    if len(c) <= 512:
-                        new_content.append(c)
-                    else:
-                        new_content.extend(get_split_max_length(c))
-                sentiment = sentiment_model(new_content, **tokenizer_kwargs)
+                new_content = split_tokens(content)
+                sentiment = sentiment_model(new_content)
                 for idx, s in enumerate(sentiment):
                     s["len_str"] = len(new_content[idx])
                 avg_score = sum([s["score"] for s in sentiment]) / len(sentiment)
@@ -66,10 +74,11 @@ def get_sentiment_all_dates():
     for year in os.listdir("text_jsonl"):
         for month in os.listdir(os.path.join("text_jsonl", year)):
             for day in os.listdir(os.path.join("text_jsonl", year, month)):
-                try:
-                    get_sentiment(int(year), int(month), int(day[:2]))
-                except:
-                    print(f"Error: {year}-{month}-{day[:2]}")
+                # try:
+                #     get_sentiment(int(year), int(month), int(day[:2]))
+                # except:
+                #     print(f"Error: {year}-{month}-{day[:2]}")
+                get_sentiment(int(year), int(month), int(day[:2]))
 
 
 get_sentiment_all_dates()
