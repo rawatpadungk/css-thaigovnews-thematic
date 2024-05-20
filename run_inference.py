@@ -70,11 +70,8 @@ def get_sentiment_all_dates():
     for year in os.listdir("text_jsonl"):
         for month in os.listdir(os.path.join("text_jsonl", year)):
             for day in os.listdir(os.path.join("text_jsonl", year, month)):
-                # try:
-                #     get_sentiment(int(year), int(month), int(day[:2]))
-                # except:
-                #     print(f"Error: {year}-{month}-{day[:2]}")
                 get_sentiment(int(year), int(month), int(day[:2]))
 
 
-get_sentiment_all_dates()
+if __name__ == "__main__":
+    get_sentiment_all_dates()
