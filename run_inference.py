@@ -12,18 +12,15 @@ def split_tokens(content: List[str], tokenizer=tokenizer, max_length: int = 512)
     """
     split_token_list = []
     len_split_token_list = []
-    tokenizer_list = tokenizer("".join(content), padding=False)["input_ids"]
+    tokenizer_list = tokenizer("".join(content))["input_ids"]
     len_tokenizer_list = len(tokenizer_list)
-    stride = int(0.95 * max_length)
+    stride = int(0.97 * max_length)
     i = 0
     while i <= len_tokenizer_list:
         tmp_list = tokenizer_list[i : i + stride]
-        # tokenizer("<_>") = [8] (5, 6 are the padding tokens)
-        last_space_idx = next((j for j in reversed(range(len(tmp_list))) if tmp_list[j] == 8), int(0.95 * stride))
-        tmp_list = tokenizer_list[i : i + last_space_idx]
         split_token_list.append(tokenizer.decode(tmp_list))
         len_split_token_list.append(len(tmp_list))
-        i += last_space_idx
+        i += stride
 
     return split_token_list, len_split_token_list
 
