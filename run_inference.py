@@ -2,6 +2,7 @@ import os
 import json
 from typing import List
 
+import multiprocessing
 from LM.sentiment_build import tokenizer, model
 from LM.sentiment_pipeline import pipe as sentiment_model
 
@@ -60,15 +61,19 @@ def get_sentiment(year: int, month: int, day: int):
                 outfile.write(jout)
 
 
-def get_sentiment_all_dates():
+def get_all_dates():
     """
     Get the sentiment from the content for all dates.
     """
+    all_dates = []
     for year in os.listdir("text_jsonl"):
         for month in os.listdir(os.path.join("text_jsonl", year)):
             for day in os.listdir(os.path.join("text_jsonl", year, month)):
-                get_sentiment(int(year), int(month), int(day[:2]))
+                all_dates.append((int(year), int(month), int(day[:2])))
+    return all_dates
 
 
 if __name__ == "__main__":
-    get_sentiment_all_dates()
+    all_dates = get_all_dates()
+    with multiprocessing.Pool(3) as p:
+        p.starmap(get_sentiment, all_dates)
