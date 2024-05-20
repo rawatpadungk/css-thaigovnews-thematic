@@ -1,7 +1,7 @@
 data/
 css_env/
-text_jsonl/
-sentiment_jsonl/
+# text_jsonl/
+# sentiment_jsonl/
 test.py
 LM/__pycache__/
 
