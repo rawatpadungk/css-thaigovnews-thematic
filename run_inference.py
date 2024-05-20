@@ -15,7 +15,7 @@ def split_tokens(content: List[str], tokenizer=tokenizer, max_length: int = 512)
     ret = []
     token_list = tokenizer("".join(content))["input_ids"]
     len_token_list = len(token_list)
-    stride = max_length - 5
+    stride = int(0.95 * max_length)
     for i in range(0, len_token_list, stride):
         ret.append(tokenizer.decode(token_list[i : i + stride]))
     return ret
