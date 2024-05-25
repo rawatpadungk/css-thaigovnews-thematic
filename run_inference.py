@@ -76,5 +76,5 @@ def get_sentiment_all_dates():
 
 if __name__ == "__main__":
     all_dates = get_sentiment_all_dates()
-    with multiprocessing.Pool(1) as p:
+    with multiprocessing.Pool(2) as p:
         p.starmap(get_sentiment, all_dates)

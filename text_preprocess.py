@@ -70,5 +70,5 @@ def get_txt_all_dates():
 
 if __name__ == "__main__":
     all_dates = get_txt_all_dates()
-    with multiprocessing.Pool(1) as p:
+    with multiprocessing.Pool(2) as p:
         p.starmap(get_lines_from_txt, all_dates)
