@@ -17,13 +17,15 @@ def get_lines_from_txt(year: int, month: int, day: int):
 
     with open(save_path + '/' + str(day).zfill(2) + '.jsonl', 'w', encoding='utf8') as outfile:
         for file in glob.glob(open_path + '/*.txt'):
+            topic_model = file.split('/')[-1].split('.')[0].split('_')[0]
             with open(file, 'r') as f:
                 lines = f.readlines()
                 lines = list(map(lambda s: s.replace('\xa0', ' '), lines))
                 content_lines = get_content(lines[1:-1])
                 ret = {
                     'date': f'{year}-{month}-{day}',
-                    'topic': process_transformers(lines[0]),
+                    'topic_model': topic_model,
+                    'title': process_transformers(lines[0]),
                     'content': [process_transformers(content_line) for content_line in content_lines],
                 }
                 jout = json.dumps(ret, ensure_ascii=False) + '\n'
@@ -52,10 +54,10 @@ def get_txt_all_dates():
     """
     Get the lines from the txt files for all dates.
     """
-    for year in os.listdir('data'):
-        for month in os.listdir(os.path.join('data', year)):
-            for day in os.listdir(os.path.join('data', year, month)):
-                get_lines_from_txt(int(year), int(month), int(day))
-    # get_lines_from_txt(2023, 4, 4)
+    # for year in os.listdir('data'):
+    #     for month in os.listdir(os.path.join('data', year)):
+    #         for day in os.listdir(os.path.join('data', year, month)):
+    #             get_lines_from_txt(int(year), int(month), int(day))
+    get_lines_from_txt(2023, 4, 4)
 
 get_txt_all_dates()

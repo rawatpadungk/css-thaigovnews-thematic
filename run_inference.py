@@ -50,7 +50,8 @@ def get_sentiment(year: int, month: int, day: int):
 
                 ret = {
                     "date": f"{year}-{month}-{day}",
-                    "topic": data["topic"],
+                    "topic_model": data["topic_model"],
+                    "title": data["title"],
                     "content": data["content"],
                     "sentiment": sentiment,
                     "avg_score": avg_score,
