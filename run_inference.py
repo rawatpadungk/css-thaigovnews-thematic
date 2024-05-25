@@ -9,7 +9,7 @@ from LM.sentiment_pipeline import pipe as sentiment_model
 
 def split_tokens(content: List[str], tokenizer=tokenizer, max_length: int = 512):
     """
-    Split the content's tokens from the tokenizer to the last occurrence of <_> before the max_length.
+    Split the content's tokens from the tokenizer.
     """
     split_token_list = []
     len_split_token_list = []
@@ -62,7 +62,7 @@ def get_sentiment(year: int, month: int, day: int):
                 outfile.write(jout)
 
 
-def get_all_dates():
+def get_sentiment_all_dates():
     """
     Get the sentiment from the content for all dates.
     """
@@ -75,6 +75,6 @@ def get_all_dates():
 
 
 if __name__ == "__main__":
-    all_dates = get_all_dates()
-    with multiprocessing.Pool(3) as p:
+    all_dates = get_sentiment_all_dates()
+    with multiprocessing.Pool(1) as p:
         p.starmap(get_sentiment, all_dates)
