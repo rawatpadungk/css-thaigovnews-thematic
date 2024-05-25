@@ -5,7 +5,24 @@ css_env/
 test.py
 LM/__pycache__/
 
-playground.py
+# workspace for Typhoon 7B
+config.py
+openai_sentiment.py
+__pycache__/
+results_wangchanberta/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
