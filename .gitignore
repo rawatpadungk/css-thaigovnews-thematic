@@ -10,7 +10,8 @@ config.py
 openai_sentiment.py
 __pycache__/
 results_wangchanberta/
-
+text_jsonl/
+sentiment_jsonl/
 
 
 
