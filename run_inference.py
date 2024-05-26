@@ -70,11 +70,14 @@ def get_sentiment_all_dates():
     for year in os.listdir("text_jsonl"):
         for month in os.listdir(os.path.join("text_jsonl", year)):
             for day in os.listdir(os.path.join("text_jsonl", year, month)):
-                all_dates.append((int(year), int(month), int(day[:2])))
+                if not os.path.exists(os.path.join("sentiment_jsonl", year, month, day[:2] + ".jsonl")):
+                    all_dates.append((int(year), int(month), int(day[:2])))
+                else:
+                    print(f"skipping {year}-{month}-{day[:2]}")
     return all_dates
 
 
 if __name__ == "__main__":
     all_dates = get_sentiment_all_dates()
-    with multiprocessing.Pool(2) as p:
+    with multiprocessing.Pool(4) as p:
         p.starmap(get_sentiment, all_dates)

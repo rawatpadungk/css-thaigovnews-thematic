@@ -18,7 +18,7 @@ def get_lines_from_txt(year: int, month: int, day: int):
 
     with open(save_path + "/" + str(day).zfill(2) + ".jsonl", "w", encoding="utf8") as outfile:
         for file in glob.glob(open_path + "/*.txt"):
-            topic_model = file.split("/")[-1].split(".")[0].split("_")[0]
+            topic_model = file.split(os.path.sep)[-1].split(".")[0].split("_")[0]
             with open(file, "r") as f:
                 lines = f.readlines()
                 lines = list(map(lambda s: s.replace("\xa0", " "), lines))
