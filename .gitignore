@@ -6,7 +6,6 @@ test.py
 __pycache__/
 LM/__pycache__/
 LLM/__pycache__/
-analysis/
 playground.py
 
 openai_sentiment.py
