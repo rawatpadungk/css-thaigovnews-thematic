@@ -3,10 +3,10 @@
 ### Dataset
 | Dataset | Description |
 | ----- |  ---- |
-| thaigov-v2-corpus (2023/01-2024/04)  | Download the dataset [here](https://drive.google.com/file/d/1HElswdqj0rd2PyglD1JSj-T9pk67cGrA/view?usp=sharing), unzip and move it to `data`.|
+| thaigov-v2-corpus (2022/11-2024/05)  | Download the dataset [here](https://drive.google.com/file/d/1fIqR5OBE7UfNQzR9o3dyNUY7ZLw2y1N3/view?usp=sharing), unzip and move it to `data`.|
 
-### Preprocessed Text
-Download the preprocessed data [here](https://drive.google.com/drive/folders/16JBdQ17QOI9J5-Vhjq8azuV8EB3GaHgx?usp=sharing)
+### Preprocessed Data
+Download the preprocessed data [here](https://drive.google.com/drive/folders/1eGH0AlaW8c6JTQFiakkAEpV8V391dmgC?usp=sharing)
 
-#### Sentiment by WangchanBerta
-Download the sentiment analysis by WangchanBerta model [here](https://drive.google.com/drive/folders/1DxUmzwSzr66EEyVHQyhff19TkE9FxiPa?usp=sharing)
+#### Sentiment Score by WangChanBerta
+Download the sentiment score by WangchanBerta [here](https://drive.google.com/drive/folders/1qAZ5rc-YvWcQFNpCh8uIgLljmVcPV2H4?usp=sharing)

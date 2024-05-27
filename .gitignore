@@ -3,9 +3,16 @@ css_env/
 text_jsonl/
 sentiment_jsonl/
 test.py
+__pycache__/
 LM/__pycache__/
-
+LLM/__pycache__/
+analysis/
 playground.py
+
+openai_sentiment.py
+config.py
+sentiment_all_inference.ipynb
+results_wangchanberta/
 
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
