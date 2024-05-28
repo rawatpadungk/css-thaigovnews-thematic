@@ -114,17 +114,49 @@ def plot_frequency_and_avg_score_by_topic(mean_score=None):
     plt.savefig("analysis/frequency_by_topic.png")
     # plt.show()
 
+    # plt.figure(figsize=FIGSIZE)
+    # sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=True).topic)
+    # if mean_score:
+    #     plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
+    #     plt.legend()
+    # plt.title("Average Score by Topic")
+    # plt.xlabel("")
+    # plt.ylabel("Average Score")
+    # plt.xticks(rotation=45)
+    # plt.tight_layout()
+    # plt.savefig("analysis/avg_score_by_topic.png")
+    # # plt.show()
+
+
+def plot_score_by_topic():
+    score_by_topic = defaultdict(list)
+    for year in os.listdir("sentiment_jsonl"):
+        for month in os.listdir(os.path.join("sentiment_jsonl", year)):
+            for day in os.listdir(os.path.join("sentiment_jsonl", year, month)):
+                open_path = os.path.join("sentiment_jsonl", year, month, day)
+                with open(open_path, "r", encoding="utf8") as infile:
+                    for line in infile:
+                        data = json.loads(line)
+                        converted_topic = THAI_TO_ENG_TOPIC.get(data["topic_model"], "Others")
+                        score_by_topic[converted_topic].append(data["avg_score"])
+
+    sorted_topic = sorted(score_by_topic, key=lambda x: np.mean(score_by_topic[x]))
     plt.figure(figsize=FIGSIZE)
-    sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=True).topic)
-    if mean_score:
-        plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
-        plt.legend()
-    plt.title("Average Score by Topic")
+    plt.boxplot(
+        [score_by_topic[topic] for topic in sorted_topic],
+        labels=[FULLNAME_TO_ABBREVIAION.get(topic) for topic in sorted_topic],
+        patch_artist=True,
+        showmeans=True,
+        medianprops=dict(color="purple", linewidth=2.5),
+        boxprops=dict(facecolor="yellow"),
+        meanprops=dict(markerfacecolor="red", markeredgecolor="red", markersize=10),
+    )
+    plt.title("Sentiment Score by Topic")
     plt.xlabel("")
-    plt.ylabel("Average Score")
+    plt.ylabel("Sentiment Score")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("analysis/avg_score_by_topic.png")
+    plt.savefig("analysis/sentiment_score_by_topic.png")
     # plt.show()
 
 
@@ -209,4 +241,5 @@ if __name__ == "__main__":
     # plot_sentiment_score()
     # plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
     # get_sentiment_score_by_top_topic()
-    get_sentiment_score_frequent_topic()
+    # get_sentiment_score_frequent_topic()
+    plot_score_by_topic()
