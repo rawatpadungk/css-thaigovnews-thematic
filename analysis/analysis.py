@@ -128,13 +128,7 @@ def plot_frequency_and_avg_score_by_topic(mean_score=None):
     # plt.show()
 
 
-def get_sentiment_score_by_top_topic(n=5):
-    topic_dict = get_frequency_and_avg_score_by_topic()
-    sorted_topic_dict = sorted(topic_dict, key=lambda x: topic_dict[x]["avg_score"])
-
-    top_positive_topics = sorted_topic_dict[-n:]
-    top_negative_topics = sorted_topic_dict[:n]
-
+def get_sentiment_score_by_topic():
     all_months = []
     score_by_topic = defaultdict(list)
     for year in os.listdir("sentiment_jsonl"):
@@ -150,6 +144,17 @@ def get_sentiment_score_by_top_topic(n=5):
             for topic, scores in score_by_topic_one_month.items():
                 score_by_topic[topic].append(np.mean(scores) if scores else np.nan)
             all_months.append(f"{year}-{month}")
+    return score_by_topic, all_months
+
+
+def get_sentiment_score_by_top_topic(n=5):
+    topic_dict = get_frequency_and_avg_score_by_topic()
+    sorted_topic_dict = sorted(topic_dict, key=lambda x: topic_dict[x]["avg_score"])
+
+    top_positive_topics = sorted_topic_dict[-n:]
+    top_negative_topics = sorted_topic_dict[:n]
+
+    score_by_topic, all_months = get_sentiment_score_by_topic()
 
     df = pd.DataFrame(score_by_topic, index=all_months).interpolate()
 
@@ -177,8 +182,31 @@ def get_sentiment_score_by_top_topic(n=5):
     plt.savefig("analysis/sentiment_score_by_negative_topic_by_month.png")
 
 
+def get_sentiment_score_frequent_topic(n=4):
+    topic_dict = get_frequency_and_avg_score_by_topic()
+    sorted_topic_dict = sorted(topic_dict, key=lambda x: topic_dict[x]["frequency"], reverse=True)
+    frequent_topics = sorted_topic_dict[:n]
+
+    score_by_topic, all_months = get_sentiment_score_by_topic()
+
+    df = pd.DataFrame(score_by_topic, index=all_months).interpolate()
+
+    plt.figure(figsize=FIGSIZE)
+    for topic in frequent_topics:
+        plt.plot(df.index, df[topic], label=topic)
+    plt.legend()
+    plt.title("Average Sentiment Score of Frequent Topic by Month")
+    plt.xlabel("Month")
+    plt.ylabel("Average Sentiment Score")
+    plt.xticks(range(len(all_months)), all_months, rotation=45)
+    plt.tight_layout()
+    plt.savefig("analysis/sentiment_score_by_frequent_topic_by_month.png")
+    # plt.show()
+
+
 if __name__ == "__main__":
-    stats = get_sentiment_score_distribution(plot_central_tendency="median")
-    plot_sentiment_score()
-    plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
-    get_sentiment_score_by_top_topic()
+    # stats = get_sentiment_score_distribution(plot_central_tendency="median")
+    # plot_sentiment_score()
+    # plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
+    # get_sentiment_score_by_top_topic()
+    get_sentiment_score_frequent_topic()
