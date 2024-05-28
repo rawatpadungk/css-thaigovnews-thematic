@@ -7,57 +7,6 @@ import json
 from collections import defaultdict
 
 
-def convert_thai_topic_to_eng(topic: str):
-    rule_based_conversion = {
-        "Cabinet Meeting Synopsis": "Cabinet Meeting Synopsis",
-        "Government News": "Government House News",
-        "Statements": "Statements",
-        "": "Others",
-        "ข่าวคณะโฆษก": "Government Spokesperson News",
-        "ข่าวนายกรัฐมนตรี": "Prime Minister News",
-        "ข่าวรองนายกรัฐมนตรี  รัฐมนตรีประจำสำนักนายกรัฐมนตรี": "Deputy Prime Minister News",
-        "คำกล่าวสุนทรพจน์": "Statements",
-        "ด้านกฎหมายฯ": "Legal Affairs",
-        "ด้านการศึกษาฯ": "Education Affairs",
-        "ด้านความมั่นคง": "Security Affairs",
-        "ด้านวัฒนธรรมท่องเที่ยวฯ": "Cultural and Tourism Affairs",
-        "ด้านสังคม": "Social Affairs",
-        "ด้านเศรษฐกิจ": "Economic Affairs",
-        "ทัน LINE ไทยคู่ฟ้า": "Official Thai Government LINE Account",
-        "รายการวิทยุไทยคู่ฟ้า": "Official Thai Government Radio Program",
-        "สรุปข่าวการประชุม ครม": "Cabinet Meeting Synopsis",
-        "อื่นๆ": "Others",
-        "ชี้แจงประเด็นสำคัญ": "Others",
-        "ข่าวทำเนียบรัฐบาล": "Government House News",
-        "ภารกิจ นายเศรษฐา ทวีสิน  นายกรัฐมนตรี": "Prime Minister News",
-        "ข่าวรอง นรม  รมตนร": "Deputy Prime Minister News",
-        "พักหนี้เกษตรกร": "Economic Affairs",
-        "สร้างคุณภาพชีวิต": "Social Affairs",
-        "แก้ปัญหาหนี้สิน": "Economic Affairs",
-        "รัฐบาลดิจิทัล": "Government House News",
-        "การดูแลสิ่งแวดล้อม": "Social Affairs",
-        "การปราบปรามยาเสพติด": "Legal Affairs",
-        "การผลักดัน Soft Power": "Economic Affairs",
-        "การพัฒนากองทัพ": "Security Affairs",
-        "การพัฒนาโครงสร้างพื้นฐาน": "Social Affairs",
-        "การแก้ไขปัญหาหนี้สินภาคประชาชน": "Economic Affairs",
-        "ความสัมพันธ์และความร่วมมือระหว่างประเทศ(ทวิภาคี)": "Government House News",
-        "ความสัมพันธ์และความร่วมมือระหว่างประเทศ(พหุภาคี)": "Government House News",
-        "นโยบาย Digital Wallet": "Economic Affairs",
-        "บทบาทประเทศไทยบนเวทีโลก": "Government House News",
-        "ปฏิรูปการศึกษาและสร้างสังคมแห่งการเรียนรู้ตลอดชีวิต": "Education Affairs",
-        "ยกระดับคุณภาพชีวิต": "Social Affairs",
-        "แก้ไขปัญหาความเห็นต่างรัฐธรรมนูญ พศ 2560": "Government House News",
-        "การประคองภาระหนี้สินและต้นทุนทางการเงินภาคธุรกิจ SMEs": "Economic Affairs",
-        "ภาคการค้าการลงทุน": "Economic Affairs",
-        "การแก้ไขปัญหาหนี้สินภาคการเกษตร": "Economic Affairs",
-        "ลดภาระค่าใช้จ่ายประชาชนด้านพลังงานและระบบสาธารณูปโภค": "Economic Affairs",
-        "สร้างรายได้จากผืนดินและส่งเสริมสิ่งแวดล้อม": "Economic Affairs",
-        "ภาคการท่องเที่ยว": "Cultural and Tourism Affairs",
-        "สิทธิที่ทำกิน": "Legal Affairs",
-    }
-
-
 def get_sentiment_score_by_month(year: int, month: int):
     avg_score_one_month = []
     for day in os.listdir(os.path.join("sentiment_jsonl", str(year), str(month).zfill(2))):
