@@ -105,7 +105,7 @@ def plot_frequency_and_avg_score_by_topic(mean_score=None):
         }
     )
     plt.figure(figsize=FIGSIZE)
-    sns.barplot(data=df, x="topic", y="frequency", order=df.sort_values("frequency", ascending=False).topic)
+    sns.barplot(data=df, x="topic", y="frequency", order=df.sort_values("frequency", ascending=True).topic)
     plt.title("Frequency by Topic")
     plt.xlabel("")
     plt.ylabel("Frequency")
@@ -115,7 +115,7 @@ def plot_frequency_and_avg_score_by_topic(mean_score=None):
     # plt.show()
 
     plt.figure(figsize=FIGSIZE)
-    sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=False).topic)
+    sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=True).topic)
     if mean_score:
         plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
         plt.legend()
