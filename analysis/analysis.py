@@ -157,7 +157,7 @@ def get_sentiment_score_by_top_topic(n=5):
     for topic in top_positive_topics:
         plt.plot(df.index, df[topic], label=topic)
     plt.legend(fontsize="small", loc="lower left")
-    plt.title("Average Sentiment Score by Topic by Month")
+    plt.title("Average Sentiment Score of Positive Topic by Month")
     plt.xlabel("Month")
     plt.ylabel("Average Sentiment Score")
     plt.xticks(range(len(all_months)), all_months, rotation=45)
@@ -169,7 +169,7 @@ def get_sentiment_score_by_top_topic(n=5):
     for topic in top_negative_topics:
         plt.plot(df.index, df[topic], label=topic)
     plt.legend(fontsize="small", loc="lower left")
-    plt.title("Average Sentiment Score by Topic by Month")
+    plt.title("Average Sentiment Score of Negative Topic by Month")
     plt.xlabel("Month")
     plt.ylabel("Average Sentiment Score")
     plt.xticks(range(len(all_months)), all_months, rotation=45)
