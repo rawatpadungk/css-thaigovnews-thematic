@@ -1,4 +1,4 @@
-THAI_TO_ENG_TOPIC_CONVERSION = {
+THAI_TO_ENG_TOPIC = {
     "Cabinet Meeting Synopsis": "Cabinet Meeting Synopsis",
     "Government News": "Government News",
     "Statements": "Statements",
@@ -45,4 +45,22 @@ THAI_TO_ENG_TOPIC_CONVERSION = {
     "สร้างรายได้จากผืนดินและส่งเสริมสิ่งแวดล้อม": "Economic Affairs",
     "ภาคการท่องเที่ยว": "Cultural and Tourism Affairs",
     "สิทธิที่ทำกิน": "Legal Affairs",
+}
+
+FULLNAME_TO_ABBREVIAION = {
+    "Prime Minister News": "PM News",
+    "Deputy Prime Minister News": "DPM News",
+    "Government Spokesperson News": "Gov Spox News",
+    "Government News": "Gov News",
+    "Cabinet Meeting Synopsis": "Meeting",
+    "Statements": "Statements",
+    "Official Thai Government LINE Account": "Thai Govt Line",
+    "Official Thai Government Radio Program": "Thai Govt Radio",
+    "Security Affairs": "Security",
+    "Legal Affairs": "Legal",
+    "Cultural and Tourism Affairs": "Cultural/Tourism",
+    "Education Affairs": "Education",
+    "Social Affairs": "Social",
+    "Economic Affairs": "Economic",
+    "Others": "Others",
 }
