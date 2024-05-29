@@ -215,7 +215,7 @@ def get_sentiment_score_by_top_topic(n=5):
     # plt.show()
 
 
-def get_sentiment_score_frequent_topic(n=4):
+def get_sentiment_score_frequent_topic(n=4, mean_score=None):
     topic_dict = get_frequency_and_avg_score_by_topic()
     sorted_topic_dict = sorted(topic_dict, key=lambda x: topic_dict[x]["frequency"], reverse=True)
     frequent_topics = sorted_topic_dict[:n]
@@ -227,6 +227,8 @@ def get_sentiment_score_frequent_topic(n=4):
     plt.figure(figsize=FIGSIZE)
     for topic in frequent_topics:
         plt.plot(df.index, df[topic], label=topic)
+    if mean_score:
+        plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
     plt.legend()
     plt.title("Average Sentiment Score of Frequent Topic by Month")
     plt.xlabel("Month")
@@ -242,5 +244,5 @@ if __name__ == "__main__":
     plot_sentiment_score()
     plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
     get_sentiment_score_by_top_topic()
-    get_sentiment_score_frequent_topic()
+    get_sentiment_score_frequent_topic(mean_score=stats["mean"])
     plot_score_by_topic()
