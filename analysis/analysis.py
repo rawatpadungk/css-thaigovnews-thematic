@@ -114,18 +114,18 @@ def plot_frequency_and_avg_score_by_topic(mean_score=None):
     plt.savefig("analysis/frequency_by_topic.png")
     # plt.show()
 
-    # plt.figure(figsize=FIGSIZE)
-    # sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=True).topic)
-    # if mean_score:
-    #     plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
-    #     plt.legend()
-    # plt.title("Average Score by Topic")
-    # plt.xlabel("")
-    # plt.ylabel("Average Score")
-    # plt.xticks(rotation=45)
-    # plt.tight_layout()
-    # plt.savefig("analysis/avg_score_by_topic.png")
-    # # plt.show()
+    plt.figure(figsize=FIGSIZE)
+    sns.barplot(data=df, x="topic", y="avg_score", order=df.sort_values("avg_score", ascending=True).topic)
+    if mean_score:
+        plt.axhline(mean_score, color="red", linestyle="--", label="mean score")
+        plt.legend()
+    plt.title("Average Score by Topic")
+    plt.xlabel("")
+    plt.ylabel("Average Score")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("analysis/avg_score_by_topic.png")
+    # plt.show()
 
 
 def plot_score_by_topic():
@@ -212,6 +212,7 @@ def get_sentiment_score_by_top_topic(n=5):
     plt.xticks(range(len(all_months)), all_months, rotation=45)
     plt.tight_layout()
     plt.savefig("analysis/sentiment_score_by_negative_topic_by_month.png")
+    # plt.show()
 
 
 def get_sentiment_score_frequent_topic(n=4):
@@ -237,9 +238,9 @@ def get_sentiment_score_frequent_topic(n=4):
 
 
 if __name__ == "__main__":
-    # stats = get_sentiment_score_distribution(plot_central_tendency="median")
-    # plot_sentiment_score()
-    # plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
-    # get_sentiment_score_by_top_topic()
-    # get_sentiment_score_frequent_topic()
+    stats = get_sentiment_score_distribution(plot_central_tendency="median")
+    plot_sentiment_score()
+    plot_frequency_and_avg_score_by_topic(mean_score=stats["mean"])
+    get_sentiment_score_by_top_topic()
+    get_sentiment_score_frequent_topic()
     plot_score_by_topic()

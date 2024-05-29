@@ -3,7 +3,6 @@ According to the official royal Thai government websites, there are a total of 1
 Thai
 - ข่าวนายกรัฐมนตรี
 - ข่าวรอง นรม. / รมต.นร.
-- ข่าวคณะโฆษก
 - ข่าวทำเนียบรัฐบาล
 - สรุปข่าวการประชุม ครม.
 - คำกล่าวสุนทรพจน์
@@ -19,7 +18,6 @@ Thai
 English
 - Prime Minister News
 - Deputy Prime Minister News
-- Government Spokesperson News
 - Government House News
 - Cabinet Meeting Synopsis
 - Statements

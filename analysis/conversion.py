@@ -3,7 +3,7 @@ THAI_TO_ENG_TOPIC = {
     "Government News": "Government News",
     "Statements": "Statements",
     "": "Others",
-    "ข่าวคณะโฆษก": "Government Spokesperson News",
+    "ข่าวคณะโฆษก": "Government News",
     "ข่าวนายกรัฐมนตรี": "Prime Minister News",
     "ข่าวรองนายกรัฐมนตรี  รัฐมนตรีประจำสำนักนายกรัฐมนตรี": "Deputy Prime Minister News",
     "คำกล่าวสุนทรพจน์": "Statements",
@@ -50,7 +50,6 @@ THAI_TO_ENG_TOPIC = {
 FULLNAME_TO_ABBREVIAION = {
     "Prime Minister News": "PM News",
     "Deputy Prime Minister News": "DPM News",
-    "Government Spokesperson News": "Gov Spox News",
     "Government News": "Gov News",
     "Cabinet Meeting Synopsis": "Meeting",
     "Statements": "Statements",
