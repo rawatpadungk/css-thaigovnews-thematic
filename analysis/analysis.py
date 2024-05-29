@@ -7,7 +7,7 @@ import json
 from collections import defaultdict
 from conversion import THAI_TO_ENG_TOPIC, FULLNAME_TO_ABBREVIAION
 
-FIGSIZE_RECT = (12, 7)
+FIGSIZE_RECT = (12.5, 5)
 FIGSIZE_SQR = (10, 10)
 
 # If possible, make it to a class object for good practice.
