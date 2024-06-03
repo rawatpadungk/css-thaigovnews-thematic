@@ -1,9 +1,9 @@
-import os
 import json
+import multiprocessing
+import os
 from typing import List
 
-import multiprocessing
-from LM.sentiment_build import tokenizer, model
+from LM.sentiment_build import tokenizer
 from LM.sentiment_pipeline import pipe as sentiment_model
 
 

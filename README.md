@@ -1,4 +1,5 @@
 # css-thaigovnews-thematic
+To reproduce our project, please run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analysis.py.
 
 ### Dataset
 | Dataset | Description |
@@ -8,5 +9,6 @@
 ### Preprocessed Data
 Download the preprocessed data [here](https://drive.google.com/drive/folders/1eGH0AlaW8c6JTQFiakkAEpV8V391dmgC?usp=sharing)
 
-#### Sentiment Score by WangChanBerta
+### Sentiment Score by WangChanBerta
 Download the sentiment score by WangchanBerta [here](https://drive.google.com/drive/folders/1qAZ5rc-YvWcQFNpCh8uIgLljmVcPV2H4?usp=sharing)
+

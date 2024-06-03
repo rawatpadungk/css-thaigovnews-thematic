@@ -1,10 +1,11 @@
-import os
 import glob
 import json
 import multiprocessing
-from typing import List
-from LM.preprocess import process_transformers
+import os
 import re
+from typing import List
+
+from LM.preprocess import process_transformers
 
 
 def get_lines_from_txt(year: int, month: int, day: int):

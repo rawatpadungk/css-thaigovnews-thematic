@@ -1,12 +1,14 @@
-from matplotlib import pyplot as plt
-import pandas as pd
-import seaborn as sns
-import os
-import numpy as np
 import json
+import os
 import random
 from collections import defaultdict
-from conversion import THAI_TO_ENG_TOPIC, FULLNAME_TO_ABBREVIAION
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+
+from analysis.conversion import THAI_TO_ENG_TOPIC, FULLNAME_TO_ABBREVIAION
 
 FIGSIZE_RECT = (12.5, 6.5)
 FIGSIZE_SQR = (10, 10)
