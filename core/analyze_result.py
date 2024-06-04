@@ -17,6 +17,8 @@ random.seed(42)
 
 
 class Analysis:
+    """A class to analyze the sentiment data."""
+
     def __init__(self):
         self.all_months = self.get_all_months()
         self.all_topics = self.get_all_topics()
@@ -25,6 +27,7 @@ class Analysis:
         os.makedirs("visual_analysis", exist_ok=True)
 
     def plot_all_visualizations(self):
+        """Plot all visualizations including the barplot, histplot, boxplot, and lineplot."""
         self.barplot_freq_by_topic()
         self.histplot_score_distribution()
         self.boxplot_score_by_topic()
@@ -32,6 +35,7 @@ class Analysis:
             self.lineplot_monthly_score_by_specific_topics(specific_type=specific_type)
 
     def get_all_months(self):
+        """Return all months in the sentiment_jsonl directory."""
         all_months = []
         for year in os.listdir("sentiment_jsonl"):
             for month in os.listdir(os.path.join("sentiment_jsonl", year)):
@@ -39,10 +43,13 @@ class Analysis:
         return all_months
 
     def get_all_topics(self):
+        """Return all topics in the sentiment_jsonl directory."""
         return FULLNAME_TO_ABBREVIAION.keys()
 
     def get_monthly_score_by_topic(self):
+        """Return the monthly score by topic."""
         monthly_score_by_topic = defaultdict(lambda: {topic: [] for topic in self.all_topics})
+        # Iterate through the sentiment_jsonl directory and store the data in the dataframe format
         for year in os.listdir("sentiment_jsonl"):
             for month in os.listdir(os.path.join("sentiment_jsonl", year)):
                 for day in os.listdir(os.path.join("sentiment_jsonl", year, month)):
@@ -56,18 +63,23 @@ class Analysis:
         return pd.DataFrame(monthly_score_by_topic).T
 
     def get_avg_monthly_score_by_topic(self):
+        """Return the average monthly score by topic."""
         return self.monthly_score_by_topic.map(np.mean)
 
     def get_monthly_freq_by_topic(self):
+        """Return the monthly frequency by topic."""
         return self.monthly_score_by_topic.map(len)
 
     def get_all_scores(self):
+        """Return all scores in the sentiment_jsonl directory."""
         all_scores = sum(self.monthly_score_by_topic.values.flatten(), [])
         self.mean_score = np.mean(all_scores)
         self.median_score = np.median(all_scores)
         return all_scores
 
     def barplot_freq_by_topic(self):
+        """Plot the frequency by topic."""
+        # Plot the barplot of the frequency by topic and sort the values
         df = self.get_monthly_freq_by_topic().sum(axis=0).sort_values()
         self.frequent_topics = df.index[-4:]
         plt.figure(figsize=FIGSIZE_SQR)
@@ -82,6 +94,8 @@ class Analysis:
         plt.savefig("visual_analysis/frequency_by_topic.png")
 
     def histplot_score_distribution(self):
+        """Plot the distribution of scores."""
+        # Plot the histogram of the scores and add the vertical line for the median score
         plt.figure(figsize=FIGSIZE_SQR)
         sns.histplot(self.all_scores, bins=20, color="orange")
         plt.axvline(self.median_score, color="red", linestyle="--", label="median score")
@@ -96,6 +110,8 @@ class Analysis:
         plt.savefig("visual_analysis/sentiment_score_distribution.png")
 
     def boxplot_score_by_topic(self):
+        """Plot the sentiment score by topic."""
+        # Plot the boxplot of the scores by topic and sort the values
         score_by_topic = self.monthly_score_by_topic.apply(lambda col: sum(col, []), axis=0)
         sort_idx = score_by_topic.apply(np.mean).sort_values().index
         self.positive_topics = sort_idx[-4:]
@@ -120,6 +136,8 @@ class Analysis:
         plt.savefig("visual_analysis/score_by_topic.png")
 
     def lineplot_monthly_score_by_specific_topics(self, specific_type=None):
+        """Plot the trend of the average monthly score by specific topics."""
+        # Determine the specific topics to plot based on the specific type
         if specific_type == "frequent":
             specific_topics = self.frequent_topics
         elif specific_type == "positive":
@@ -128,6 +146,7 @@ class Analysis:
             specific_topics = self.negative_topics
         else:
             specific_topics = self.all_topics
+        # First, plot the overall monthly score and the horizontal line for the mean score
         avg_monthly_score_by_topic = self.get_avg_monthly_score_by_topic()
         avg_monthly_score = self.monthly_score_by_topic.apply(lambda row: sum(row, []), axis=1).apply(np.mean)
         plt.figure(figsize=FIGSIZE_RECT)
@@ -141,6 +160,8 @@ class Analysis:
             color="black",
             linestyle="--",
         )
+        # Then, interpolate the missing value and consider only the specific topics
+        # Plot the lineplot of the average monthly score of each specific topic
         df = avg_monthly_score_by_topic.interpolate().loc[:, specific_topics]
         colors = ["red", "#FFA500", "green", "#0077B6"]
         for i, topic in enumerate(df.columns):
