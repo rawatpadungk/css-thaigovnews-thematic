@@ -1,4 +1,4 @@
-According to the official royal Thai government websites, there are a total of 14 news categories as follows.
+According to the official royal Thai government websites, there are a total of 13 news categories as follows.
 
 Thai
 - ข่าวนายกรัฐมนตรี
@@ -18,7 +18,7 @@ Thai
 English
 - Prime Minister News
 - Deputy Prime Minister News
-- Government House News
+- Government News
 - Cabinet Meeting Synopsis
 - Statements
 - Official Thai Government Line Account
