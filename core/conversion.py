@@ -1,3 +1,4 @@
+# Rule to convert Thai to English topic
 THAI_TO_ENG_TOPIC = {
     "Cabinet Meeting Synopsis": "Cabinet Meeting Synopsis",
     "Government News": "Government News",
@@ -47,6 +48,7 @@ THAI_TO_ENG_TOPIC = {
     "สิทธิที่ทำกิน": "Legal Affairs",
 }
 
+# Rule to convert full name to abbreviation to be included in graph plots
 FULLNAME_TO_ABBREVIAION = {
     "Prime Minister News": "PM News",
     "Deputy Prime Minister News": "DPM News",
