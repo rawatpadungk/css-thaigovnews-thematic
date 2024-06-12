@@ -168,7 +168,7 @@ class Analysis:
         for i, topic in enumerate(df.columns):
             sns.lineplot(x=df.index, y=df[topic], color=colors[i], label=topic)
         plt.legend(fontsize=14, ncol=2, loc="lower left")
-        plt.title(f"Average Monthly Sentiment Score of {specific_type.title} Topic")
+        plt.title(f"Average Monthly Sentiment Score of {specific_type.title()} Topic")
         plt.xlabel("")
         plt.ylabel("Average Sentiment Score", fontsize=15)
         plt.xticks(range(len(self.all_months)), self.all_months, rotation=45, fontsize=14)
