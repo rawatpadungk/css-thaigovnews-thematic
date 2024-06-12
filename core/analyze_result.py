@@ -139,7 +139,8 @@ class Analysis:
         """Plot the trend of the average monthly score by specific topics."""
         # Determine the specific topics to plot based on the specific type
         if specific_type == "frequent":
-            specific_topics = self.frequent_topics
+            specific_topics = list(self.frequent_topics).copy()
+            specific_topics.remove("Government News")
         elif specific_type == "positive":
             specific_topics = self.positive_topics
         elif specific_type == "negative":
