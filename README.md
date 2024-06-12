@@ -1,5 +1,5 @@
 # css-thaigovnews-thematic
-To reproduce our project, please run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analysis.py.
+To reproduce our project, please run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analyze_result.py.
 
 ### Dataset
 | Dataset | Description |
