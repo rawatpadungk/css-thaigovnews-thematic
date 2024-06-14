@@ -1,10 +1,19 @@
 # css-thaigovnews-thematic
-To reproduce our project, please run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analyze_result.py.
+
+### Reproduction
+To reproduce our project, 
+1. Download the dataset from the link provided under the section "Dataset" below, then unzip and move it to `data`.
+2. Run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analyze_result.py. The following is the example script:
+```
+python text_preprocess.py
+python run_inference.py
+python analyze_result.py
+```
 
 ### Dataset
 | Dataset | Description |
 | ----- |  ---- |
-| thaigov-v2-corpus (2022/11-2024/05)  | Download the dataset [here](https://drive.google.com/file/d/1fIqR5OBE7UfNQzR9o3dyNUY7ZLw2y1N3/view?usp=sharing), unzip and move it to `data`.|
+| thaigov-v2-corpus (2022/11-2024/05)  | Download the dataset [here](https://drive.google.com/file/d/1fIqR5OBE7UfNQzR9o3dyNUY7ZLw2y1N3/view?usp=sharing) (108.1MB), unzip and move it to `data`.|
 
 This contains a total of 24021 articles.
 
