@@ -1,15 +1,15 @@
-import os
 import json
+import multiprocessing
+import os
 from typing import List
 
-import multiprocessing
-from LM.sentiment_build import tokenizer, model
+from LM.sentiment_build import tokenizer
 from LM.sentiment_pipeline import pipe as sentiment_model
 
 
 def split_tokens(content: List[str], tokenizer=tokenizer, max_length: int = 512):
     """
-    Split the content's tokens from the tokenizer to the last occurrence of <_> before the max_length.
+    Split the content's tokens from the tokenizer.
     """
     split_token_list = []
     len_split_token_list = []
@@ -50,7 +50,8 @@ def get_sentiment(year: int, month: int, day: int):
 
                 ret = {
                     "date": f"{year}-{month}-{day}",
-                    "topic": data["topic"],
+                    "topic_model": data["topic_model"],
+                    "title": data["title"],
                     "content": data["content"],
                     "sentiment": sentiment,
                     "avg_score": avg_score,
@@ -61,7 +62,7 @@ def get_sentiment(year: int, month: int, day: int):
                 outfile.write(jout)
 
 
-def get_all_dates():
+def get_sentiment_all_dates():
     """
     Get the sentiment from the content for all dates.
     """
@@ -69,11 +70,14 @@ def get_all_dates():
     for year in os.listdir("text_jsonl"):
         for month in os.listdir(os.path.join("text_jsonl", year)):
             for day in os.listdir(os.path.join("text_jsonl", year, month)):
-                all_dates.append((int(year), int(month), int(day[:2])))
+                if not os.path.exists(os.path.join("sentiment_jsonl", year, month, day[:2] + ".jsonl")):
+                    all_dates.append((int(year), int(month), int(day[:2])))
+                else:
+                    print(f"skipping {year}-{month}-{day[:2]}")
     return all_dates
 
 
 if __name__ == "__main__":
-    all_dates = get_all_dates()
-    with multiprocessing.Pool(3) as p:
+    all_dates = get_sentiment_all_dates()
+    with multiprocessing.Pool(4) as p:
         p.starmap(get_sentiment, all_dates)

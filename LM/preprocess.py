@@ -2,11 +2,11 @@
 """
 Preprocessing for thai2transformers
 """
-from typing import Collection, Callable
-from functools import partial
 import re
 import html
 import emoji
+from functools import partial
+from typing import Collection, Callable
 from pythainlp.tokenize import word_tokenize
 
 
