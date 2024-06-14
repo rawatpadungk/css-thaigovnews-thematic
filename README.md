@@ -15,11 +15,11 @@ python core/analyze_result.py
 | ----- |  ---- |
 | thaigov-v2-corpus (2022/11-2024/05)  | Download the dataset [here](https://drive.google.com/file/d/1fIqR5OBE7UfNQzR9o3dyNUY7ZLw2y1N3/view?usp=sharing) (108.1MB), unzip and move it to `data`.|
 
-This contains a total of 24021 articles.
+This dataset contains a total of 24021 articles.
 
 ### Preprocessed Data
 Download the preprocessed data [here](https://drive.google.com/drive/folders/1eGH0AlaW8c6JTQFiakkAEpV8V391dmgC?usp=sharing)
 
-### Sentiment Score by WangChanBerta
-Download the sentiment score by WangchanBerta [here](https://drive.google.com/drive/folders/1qAZ5rc-YvWcQFNpCh8uIgLljmVcPV2H4?usp=sharing)
+### Sentiment Score by WangchanBERTa
+Download the sentiment score by WangchanBERTa [here](https://drive.google.com/drive/folders/1qAZ5rc-YvWcQFNpCh8uIgLljmVcPV2H4?usp=sharing)
 
