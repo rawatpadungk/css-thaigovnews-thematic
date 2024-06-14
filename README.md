@@ -5,9 +5,9 @@ To reproduce our project,
 1. Download the dataset from the link provided under the section "Dataset" below, then unzip and move it to `data`.
 2. Run all 3 files in the 'core' directory in this order: text_preprocess.py, run_inference.py, and analyze_result.py. The following is the example script:
 ```
-python text_preprocess.py
-python run_inference.py
-python analyze_result.py
+python core/text_preprocess.py
+python core/run_inference.py
+python core/analyze_result.py
 ```
 
 ### Dataset
